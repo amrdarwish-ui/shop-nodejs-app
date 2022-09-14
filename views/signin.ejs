@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./parts/head') %> 
+<body>
+<%- include('./parts/navbar') %> 
+ <div class="container text-center">
+    <h3>Sign In</h3>
+    <br></br>
+    <div style="margin-left: 40%; margin-right: 40%;">
+        <form action="/auth/signin" method="POST">
+
+           
+            <input type="email" class="form-control" name="email" placeholder="E-mail">
+    
+            <input type="password" class="form-control" name="password" placeholder="Password">
+          
+            <% if(errMessage != 'null'){%>
+                <div class="alert alert-danger">
+                    <%- errMessage %> 
+                   </div>
+                   <% } %>  
+            <br>
+            <p5>
+                <a href="/auth/signup"> if you don't have an account click to signup </a>
+                
+             </p5>
+        </br>
+            <input type="submit" value="Login" class="btn btn-primary">
+        </form>
+    </div>
+ </div>
+    <script>src="/js/jquery.min.js" </script>
+    <script>src="/js/popper.min.js" </script>
+    <script>src="/js/bootstrap.min.js" </script>
+</body>
+</html>

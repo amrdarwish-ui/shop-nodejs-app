@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./parts/head') %> 
+<body>
+<%- include('./parts/navbar') %> 
+<div class="container">
+    
+<% if(cartItems.length == 0){%>
+    <div class="alert alert-danger">
+     No Products to show
+    </div>
+   <% }else{ %>
+    <table class="table table-striped" style="border: 1px solid;">
+        <td>no</td>
+        <td>Product name</td>
+        <td>Price</td>
+        <td>Amount</td>
+        <td>Total</td>
+        <td></td>
+        <tbody>
+            <% for(i = 0;i<cartItems.length;i++){%> 
+                <tr>
+                    <td><%- i+1 %> </td>
+                    <td><a href="/products/<%- cartItems[i].productId %>"><%- cartItems[i].name %> </a></td>
+                    <td><%- cartItems[i].price %> $</td>
+                    <form  method="POST">
+                        <td><input type="text" name="amount" class="form-control" value="<%- cartItems[i].amount %> "></td>
+                        <td><%- cartItems[i].price * cartItems[i].amount %> </td>
+                        <td>
+                            <input type="hidden" name="cartid" value="<%- cartItems[i]._id %>">
+                            <input type="submit" class="btn btn-success" value="Save" formaction="/cart/save">
+                            <input type="submit" class="btn btn-danger" value="Delete" formaction="/cart/delete">
+                        </td>
+                    </form>
+                </tr>
+                <% } %> 
+        </tbody>
+
+    </table>
+    <form action="/orders" method="POST" style="margin-left: 50%;">
+        <input type="submit" class="btn btn-danger" value="ORDER NOW">
+        <input type="hidden" name="cartitems" value="<%- cartItems[0] %>">
+    </form>
+        <% } %> 
+
+</div>
+   
+    <script>src="/js/jquery.min.js" </script>
+    <script>src="/js/popper.min.js" </script>
+    <script>src="/js/bootstrap.min.js" </script>
+</body>
+</html>

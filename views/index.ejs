@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./parts/head') %> 
+<body>
+<%- include('./parts/navbar') %> 
+<!-- <br></br> -->
+   <div class="container">
+    <form action="/" class="form-inline" style="margin: 10px;" method="GET">
+      <select name="category" class="form-control" style="width: 80%;">
+        <option value="all">All</option>
+        <option value="clothes">Clothes</option>
+        <option value="phones">Phones</option>
+        <option value="computers">Computers</option>
+      </select>
+      <div style="width: 80px;"></div>
+      <input type="submit"  class="btn btn-primary" >
+   </form>
+   </div>
+    
+     <div class="container">
+        <% if(products.length == 0){%>
+         <div class="alert alert-danger">
+          No Products to show
+         </div>
+        <% }else{ %>
+          <div class="row">
+            <% products.forEach(element => {%> 
+                <div class="col col-12 col-md-2 col-lg-3 col-xl-4">
+                    <div class="card" style="width: 18rem;">
+                        <% if(element.image[0] == 'h'){%>
+                          <img class="card-img-top" height="250" src="<%- element.image %>" alt="Card image cap">
+                          <% }else{%>
+                            <img class="card-img-top" height="250" src="https://myonlineshope.herokuapp.com/<%- element.image %>" alt="Card image cap">
+                            <% } %> 
+                        <div class="card-body">
+                          <h5 class="card-title">
+                           <a href="/products/<%- element._id %>"><%- element.name %> </a>
+                           <p>Price: <%- element.price %> </p>
+                        </h5>
+                          <p class="card-text"><%- element.description %></p>
+                          <form action="/cart" method="POST">
+                            <input type="number" required name="amount">
+                            <br></br>
+                            <input type="hidden" name="name" class="form-control" value="<%- element.name %> ">
+                            <input type="hidden" name="price" class="form-control" value="<%- element.price %> ">
+                            <input type="hidden" name="productId" class="form-control" value="<%- element._id %> ">
+                            <input type="submit" class="btn btn-primary" value="Add to Cart">
+                          </form>
+                        </div>
+                      </div>
+                      <br></br>
+                </div>
+           <%    });%> 
+           <% } %> 
+        </div>
+
+     </div>
+    <script>src="/js/jquery.min.js" </script>
+    <script>src="/js/popper.min.js" </script>
+    <script>src="/js/bootstrap.min.js" </script>
+</body>
+</html>

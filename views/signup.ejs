@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./parts/head') %> 
+<body>
+<%- include('./parts/navbar') %> 
+ <div class="container text-center">
+    <h3>Create Account</h3>
+    <br></br>
+    <div style="margin-left: 40%; margin-right: 40%;">
+        <form  method="post">
+            <input type="text" class="form-control" name="username" placeholder="User name">
+           
+            <input type="email" class="form-control" name="email" placeholder="E-mail">
+    
+            <input type="password" class="form-control" name="password" placeholder="Password">
+          
+            <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password">
+            <% if(errMessage != 'null'){%>
+                <div class="alert alert-danger">
+                    <%- errMessage %> 
+                   </div>
+                   <% } %>  
+            <br></br>
+            <input type="submit" value="Create Account" class="btn btn-primary">
+            
+        </form>
+    </div>
+ </div>
+    <script>src="/js/jquery.min.js" </script>
+    <script>src="/js/popper.min.js" </script>
+    <script>src="/js/bootstrap.min.js" </script>
+</body>
+</html>

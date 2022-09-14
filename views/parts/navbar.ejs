@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="container">
+        
+        
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item <%- title==='Home'? 'active' : '' %>">
+                  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <% if(isUser){%>
+                  <li class="nav-item <%- title==='Cart'? 'active' : '' %>">
+                    <a class="nav-link" href="/cart">Cart</a>
+                  </li>
+                  <li class="nav-item ">
+                      <a class="nav-link" href="/orders">Orders</a>
+                    </li>
+                    <% }else{%>   
+                  <li class="nav-item <%- title==='Sign in'? 'active' : '' %>">
+                    <a class="nav-link" href="/auth/signin">Login</a>
+                  </li>
+                  <li class="nav-item <%- title==='Sign Up'? 'active' : '' %>">
+                    <a class="nav-link" href="/auth/signup">Sign Up</a>
+                  </li>
+                  <% } %> 
+                  <% if(isAdmin){ %>
+                    <li class="nav-item <%- title==='Add'? 'active' : '' %>">
+                      <a class="nav-link" href="/admin/add">Add Product</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/admin/orders">Manage Orders</a>
+                    </li>
+                    <% } %>  
+                 </ul> 
+                <% if(isUser){%>
+                  <form action="/auth/logout" method="POST">
+                    <input type="submit" value="Logout" class="btn btn-danger">
+                  </form>
+                  <% } %>  
+               
+              
+            </div>
+         
+    </div>
+</nav>
