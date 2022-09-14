@@ -74,7 +74,7 @@ const mongoose = require("mongoose");
 
 mongoose
   .connect(
-    "mongodb+srv://amr:amr@cluster0.zd3tt7j.mongodb.net/all-data?retryWrites=true&w=majority"
+    ""
   )
   .then((result) => {
     //run
